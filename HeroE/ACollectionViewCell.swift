@@ -1,9 +1,4 @@
-//
-//  ACollectionViewCell.swift
-//  HeroE
-//
-//  Created by Owen on 2021/5/18.
-//
+
 
 import UIKit
 

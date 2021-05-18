@@ -8,6 +8,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+
+//        let layout = HorizontalCollectionViewFlowLayout()
+//        layout.scrollDirection = .vertical
+//        layout.itemSize = CGSize(width: 56, height: 71)
+//        layout.minimumLineSpacing = 14
+//        layout.minimumInteritemSpacing = itemSpace
+//        collectionView.contentInset = UIEdgeInsets(top: 30, left: insetLeft, bottom: 30, right: insetLeft)
+//        collectionView.setCollectionViewLayout(layout, animated: false)
+//        collectionView.reloadData()
     }
 
 

@@ -47,6 +47,4 @@ class HostedViewCollectionViewCell: UICollectionViewCell {
             _hostedView = newValue
         }
     }
-
-    //Omitted methods
 }

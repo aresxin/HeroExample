@@ -40,6 +40,14 @@ extension ATableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
+
+        let vgenerator = UIImpactFeedbackGenerator(style: .medium)
+        vgenerator.impactOccurred()
+
+
         let s = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "CollViewController") as!  CollViewController
         s.hero.isEnabled = true
         s.data = indexPath.item

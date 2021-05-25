@@ -3,6 +3,31 @@
 import UIKit
 import Hero
 
+public enum UIPanGestureRecognizerDirection {
+    case undefined
+    case bottomToTop
+    case topToBottom
+    case rightToLeft
+    case leftToRight
+}
+
+extension UIPanGestureRecognizer {
+    public var direction: UIPanGestureRecognizerDirection {
+        let velocity = self.velocity(in: view)
+        let isVertical = abs(velocity.y) > abs(velocity.x)
+
+        var direction: UIPanGestureRecognizerDirection
+
+        if isVertical {
+            direction = velocity.y > 0 ? .topToBottom : .bottomToTop
+        } else {
+            direction = velocity.x > 0 ? .leftToRight : .rightToLeft
+        }
+
+        return direction
+    }
+}
+
 class CollViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
 
@@ -29,21 +54,26 @@ class CollViewController: UIViewController {
 
     }
 
+    
+
     @objc func handlePan(gr: UIPanGestureRecognizer) {
-      let translation = gr.translation(in: view)
-      switch gr.state {
-      case .began:
-        dismiss(animated: true, completion: nil)
-      case .changed:
-        Hero.shared.update(translation.y / view.bounds.height)
-      default:
-        let velocity = gr.velocity(in: view)
-        if ((translation.y + velocity.y) / view.bounds.height) > 0.5 {
-          Hero.shared.finish()
-        } else {
-          Hero.shared.cancel()
+        let translation = gr.translation(in: view)
+        guard gr.direction == .topToBottom else {
+            return
         }
-      }
+        switch gr.state {
+        case .began:
+            dismiss(animated: true, completion: nil)
+        case .changed:
+            Hero.shared.update(translation.y / view.bounds.height)
+        default:
+            let velocity = gr.velocity(in: view)
+            if ((translation.y + velocity.y) / view.bounds.height) > 0.5 {
+                Hero.shared.finish()
+            } else {
+                Hero.shared.cancel()
+            }
+        }
     }
 
 }

@@ -1,6 +1,9 @@
 
 import UIKit
 
+
+
+
 class CoverCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
 }
